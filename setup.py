@@ -14,7 +14,7 @@ setuptools.setup(
     url="https://github.com/posts-scarcity/flight-log-bot",
     packages=setuptools.find_packages(),
     include_package_data=True,
-    install_requires=['python-dotenv'],
+    install_requires=['tweepy', 'pandas'],
     entry_points = {
         'console_scripts': [
             'flight-log-bot=flight-log-bot.bot:main',
