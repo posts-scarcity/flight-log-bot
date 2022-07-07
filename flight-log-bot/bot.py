@@ -111,7 +111,7 @@ def main():
                 print('Rules still exist:')
                 print(rules)
                 print('Exiting.')
-                listener.disconnect()
+            listener.disconnect()
             exit(0)
 
 
