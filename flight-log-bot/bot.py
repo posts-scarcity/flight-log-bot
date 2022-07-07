@@ -15,7 +15,7 @@ class Client(tweepy.Client):
 
 
 class Listener(tweepy.StreamingClient):
-    def __init__(self, bearer_token, client):
+    def __init__(self, bearer_token, client, wait_on_rate_limit):
         super().__init__(bearer_token)
         self.bearer_token = bearer_token
         self.client = client
@@ -29,7 +29,6 @@ class Listener(tweepy.StreamingClient):
         self.filter(expansions='author_id,in_reply_to_user_id',
                     tweet_fields='created_at,geo,source',
                     user_fields='id,name,username')
-        print('Listening...')
 
     def get_ids(self):
         print('Reading CSV.')
@@ -77,10 +76,8 @@ class Listener(tweepy.StreamingClient):
     # def on_response(self, response):
     #     print(f'Response: {response}')
 
-    # def on_exception(self, exception):
-    #     print("Exception:")
-    #     print(exception)
-
+    def on_exception(self, exception):
+        print(f"Caught unknown exception {exception}")
 
 def main():
     client = Client(bearer_token=CONFIG['BEARER_TOKEN'],
